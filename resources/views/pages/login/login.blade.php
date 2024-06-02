@@ -117,7 +117,7 @@
                 <div class="card p-0">
                     <div class="card-title text-center">
                         <img src="{{ url('backend/dist/img/Logo.png') }}" width="200">
-                        <h5 class="         mt-2">SELAMAT DATANG</h5> <small class="para">Sistem Pendukung
+                        <h5 class="         mt-2">SELAMAT DATANG Di WEBSITE</h5> <small class="para">Sistem Pendukung
                             Keputusan Pemilihan Menu Makanan Bagi Balita Yang Mengalami Kekurangan Gizi</small>
                     </div>
                     <form class="signup" action="{{ route('login') }}" method="POST">

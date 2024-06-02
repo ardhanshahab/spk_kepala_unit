@@ -20,11 +20,11 @@ class UserSeeder extends Seeder
         collect(
             [
                 [
-                    'name' => 'Petugas Gizi',
-                    'email' => 'gizi@gmail.com',
+                    'name' => 'Asri',
+                    'email' => 'admin@gmail.com',
                     'role' => 'Admin',
                     'email_verified_at' => Carbon::now(),
-                    'password' => Hash::make('Admin123'),
+                    'password' => Hash::make('password'),
                 ],
                 [
                     'name' => 'Kepala Puskesmas',

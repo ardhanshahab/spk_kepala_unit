@@ -36,53 +36,7 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                {{-- <h3>{{ $umur }}</h3> --}}
 
-                                <p>Jumblah Sub Kriteria Umur</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-calendar-day"></i>
-                            </div>
-                            <a href="{{ route('umur') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                {{-- <h3>{{ $berat }}</h3> --}}
-
-                                <p>Jumblah Sub Kriteria Berat Badan</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-weight"></i>
-                            </div>
-                            <a href="{{ route('berat') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                {{-- <h3>{{ $tinggi }}</h3> --}}
-
-                                <p>Jumblah Sub Kriteria Tinggi Badan</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-text-height"></i>
-                            </div>
-                            <a href="{{ route('tinggi') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
                     <!-- ./col -->
                 </div>
             </div><!-- /.container-fluid -->

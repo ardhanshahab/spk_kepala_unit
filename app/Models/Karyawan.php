@@ -15,4 +15,9 @@ class Karyawan extends Model
             'email',
             'jabatan',
     ];
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
 }

@@ -36,7 +36,7 @@
         }
 
         h5 {
-            color: #186301;
+            color: #0078fade;
             margin-bottom: 3px;
             font-weight: bold
         }
@@ -52,14 +52,14 @@
         }
 
         .form-control {
-            border: 1px solid #186301;
+            border: 1px solid #0078fade;
             border-radius: 30px;
             background-color: rgba(0, 0, 0, .075);
             letter-spacing: 1px
         }
 
         .form-control:focus {
-            border: 0.5px solid #186301;
+            border: 0.5px solid #0078fade;
             border-radius: 30px;
             box-shadow: none;
             background-color: rgba(0, 0, 0, .075);
@@ -72,8 +72,7 @@
             width: 100%;
             border-radius: 30px;
             border: none;
-            background: linear-gradient(to right, rgba(24, 99, 1) 0%, rgba(73, 161, 65) 100%);
-            background: -webkit-linear-gradient(left, rgba(24, 99, 1) 0%, rgba(73, 161, 65) 100%)
+           background-color: #0078fade
         }
 
         .text-left {
@@ -116,14 +115,14 @@
             <div class="col-md-6 mx-auto py-4 px-0">
                 <div class="card p-0">
                     <div class="card-title text-center">
-                        <img src="{{ url('backend/dist/img/Logo.png') }}" width="200">
-                        <h5 class="         mt-2">SELAMAT DATANG Di WEBSITE</h5> <small class="para">Sistem Pendukung
-                            Keputusan Pemilihan Menu Makanan Bagi Balita Yang Mengalami Kekurangan Gizi</small>
+                        <img src="{{ url('img/Logo.png') }}" width="400" class="m-2">
+                        <h5 class="mt-2">SELAMAT DATANG </h5> <small class="para">Sistem Pendukung
+                            Keputusan Pemilihan Kepala Unit</small>
                     </div>
                     <form class="signup" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="form-group"><input value="{{ old('email') }}" name="email" type="email"
-                                class="form-control" placeholder="email">
+                                class="form-control" placeholder="Email">
                             @error('email')
                                 <div class="text-danger">
                                     {{ $message }}
@@ -132,7 +131,7 @@
                         </div>
 
                         <div class="form-group"><input type="password" name="password" class="form-control"
-                                placeholder="password">
+                                placeholder="Password">
                         </div>
 
                         <button type="submit" class="btn btn-primary mb-5">Login</button>

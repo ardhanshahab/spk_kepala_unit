@@ -21,12 +21,25 @@ class CriteriaController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'kriteria' => 'required|string|max:255',
-            'bobot' => 'required|integer'
+            'nama_kriteria' => 'required|string|max:255',
+            'bobot' => 'required|integer',
         ]);
 
-        Criteria::create($request->all());
+        $id = Criteria::max('id') + 1;
+        if($id > 5){
+            return redirect()->route('admin.criteria.index')
+                ->with('error', 'Tidak boleh melebihi 5 kriteria.');
+        }
+
+        $kode = "C" . $id;
+
+        Criteria::create([
+            'nama' => $kode,
+            'bobot' => $request->bobot,
+            'nama_kriteria' => $request->nama_kriteria
+        ]);
 
         return redirect()->route('admin.criteria.index')
                          ->with('success', 'Criteria created successfully.');
@@ -41,12 +54,12 @@ class CriteriaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kriteria' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'bobot' => 'required|integer'
         ]);
 
         $criteria = Criteria::findOrFail($id);
-        $criteria->update($request->all());
+        $criteria->update($request->only(['nama_kriteria', 'bobot']));
 
         return redirect()->route('admin.criteria.index')
                          ->with('success', 'Criteria updated successfully.');

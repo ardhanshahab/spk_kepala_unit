@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
@@ -30,7 +29,7 @@ class KaryawanController extends Controller
 
         Karyawan::create($request->all());
 
-        return redirect()->route('pages.admin.karyawan.index')
+        return redirect()->route('admin.karyawan.index')
             ->with('success', 'Karyawan created successfully.');
     }
 
@@ -56,7 +55,7 @@ class KaryawanController extends Controller
 
         $karyawan->update($request->all());
 
-        return redirect()->route('pages.admin.karyawan.index')
+        return redirect()->route('admin.karyawan.index')
             ->with('success', 'Karyawan updated successfully');
     }
 
@@ -64,7 +63,7 @@ class KaryawanController extends Controller
     {
         $karyawan->delete();
 
-        return redirect()->route('pages.admin.karyawan.index')
+        return redirect()->route('admin.karyawan.index')
             ->with('success', 'Karyawan deleted successfully');
     }
 }

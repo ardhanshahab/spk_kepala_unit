@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Kriteria</h1>
+                    <h1 class="m-0">Penilaian</h1>
                 </div>
             </div>
         </div>
@@ -18,9 +18,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Kriteria</h3>
+                            <h3 class="card-title">Data Penilaian</h3>
                             <div class="card-tools">
-                                <a href="{{ route('admin.criteria.create') }}" class="btn btn-success">Tambah Kriteria</a>
+                                <a href="{{ route('penilaian.create') }}" class="btn btn-success">Tambah Penilaian</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -38,22 +38,23 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Karyawan</th>
                                         <th>Kriteria</th>
-                                        <th>Kode Kriteria</th>
-                                        <th>Bobot</th>
+                                        <th>Nilai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($criterias as $criteria)
+                                    @forelse ($penilaians as $penilaian)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $criteria->nama_kriteria }}</td>
-                                            <td>{{ $criteria->nama }}</td>
-                                            <td>{{ $criteria->bobot }}</td>
+                                            <td>{{ $penilaian->karyawan->nama }}</td>
+                                            <td>{{ $penilaian->kriteria->nama }}</td>
+                                            <td>{{ $penilaian->nilai }}</td>
                                             <td>
-                                                <a href="{{ route('admin.criteria.edit', $criteria->id) }}" class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('admin.criteria.destroy', $criteria->id) }}" method="POST" style="display:inline;">
+                                                <a href="{{ route('penilaian.topsis') }}" class="btn btn-primary">Topsis</a>
+                                                <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('penilaian.destroy', $penilaian->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Hapus</button>
@@ -62,7 +63,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4">Data Tidak Ada</td>
+                                            <td colspan="5">Data Tidak Ada</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Tambah Kriteria</h1>
+                    <h1 class="m-0">Tambah Penilaian</h1>
                 </div>
             </div>
         </div>
@@ -27,18 +27,30 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('admin.criteria.store') }}" method="POST">
+                            <form action="{{ route('penilaian.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" name="nama_kriteria" class="form-control" value="{{ old('nama_kriteria') }}">
+                                    <label for="karyawan_id">Karyawan</label>
+                                    <select name="karyawan_id" class="form-control">
+                                        @foreach($karyawans as $karyawan)
+                                            <option value="{{ $karyawan->id }}">{{ $karyawan->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="bobot">Bobot</label>
-                                    <input type="number" name="bobot" class="form-control" value="{{ old('bobot') }}">
+                                    <label for="kriteria_id">Kriteria</label>
+                                    <select name="kriteria_id" class="form-control">
+                                        @foreach($kriteria as $krit)
+                                            <option value="{{ $krit->id }}">{{ $krit->nama }} - {{ $krit->nama_kriteria }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nilai">Nilai</label>
+                                    <input type="number" name="nilai" class="form-control" value="{{ old('nilai') }}" min="0" max="100">
                                 </div>
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="{{ route('admin.criteria.index') }}" class="btn btn-default">Back</a>
+                                <a href="{{ route('penilaian.index') }}" class="btn btn-default">Back</a>
                             </form>
                         </div>
                     </div>

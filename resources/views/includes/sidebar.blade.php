@@ -1,10 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link">
-        <img src="{{ url('backend/dist/img/Logo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3  mt-2">
-        <span class="brand-text font-weight-bold">PUSKESMAS</span><br>
-        <span class="brand-text font-weight-bold">MANIANGPAJO</span>
+        {{-- <img src="{{ url('backend/dist/img/Logo.png') }}" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3  mt-2"> --}}
+        <span class="brand-text font-weight-bold">Permodalan</span><br>
+        <span class="brand-text font-weight-bold">Nasional</span><br>
+        <span class="brand-text font-weight-bold">Madani</span>
     </a>
 
     <!-- Sidebar -->
@@ -65,21 +66,17 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
-                    @if (Auth::user()->role == 'Admin')
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('alternatif') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon text-white "></i>
-                                    <p class="text-white">Alternatif</p>
-                                </a>
-                            </li>
-                        </ul>
-                    @endif
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('penentuan') }}" class="nav-link">
+                            <a href="{{ route('admin.karyawan.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon text-white"></i>
-                                <p class="text-white">Penentuan</p>
+                                <p class="text-white">Karyawan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('penilaian.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p class="text-white">Penilaian</p>
                             </a>
                         </li>
                     </ul>

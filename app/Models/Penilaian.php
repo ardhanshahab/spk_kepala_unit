@@ -9,13 +9,17 @@ class Penilaian extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'karyawan_id',
-        'C1',
-        'C2',
-        'C3',
-        'C4',
-        'C5',
-    ];
+    protected $fillable = ['karyawan_id', 'kriteria_id', 'nilai'];
+
+    public function karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id', 'id');
+    }
+
+    public function kriteria()
+    {
+        return $this->belongsTo(Criteria::class, 'kriteria_id', 'id');
+    }
+
 
 }

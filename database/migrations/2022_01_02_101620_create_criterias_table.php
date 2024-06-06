@@ -15,8 +15,9 @@ class CreateCriteriasTable extends Migration
     {
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
-            $table->string('kriteria');
+            $table->string('nama');
             $table->string('bobot');
+            $table->string('nama_kriteria');
             $table->timestamps();
         });
     }

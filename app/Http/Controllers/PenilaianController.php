@@ -251,6 +251,7 @@ class PenilaianController extends Controller
         $sum = $j['C1'] + $j['C2'] + $j['C3'] + $j['C4'] + $j['C5'];
         $sqrt = sqrt($sum);
         $hasilJarakPositif[] = [
+            'nama' => $j['nama'],
             'sum' => $sum,
             'sqrt' => $sqrt,
         ];
@@ -293,30 +294,22 @@ class PenilaianController extends Controller
         $sum = $j['C1'] + $j['C2'] + $j['C3'] + $j['C4'] + $j['C5'];
         $sqrt = sqrt($sum);
         $hasilJarakNegatif[] = [
+            'nama' => $j['nama'],
             'sum' => $sum,
             'sqrt' => $sqrt,
         ];
     }
 
     $nilaiPrefensi = [];
-    foreach ($perhitunganJarakNegatif as $index => $j) {
+    foreach ($hasilJarakNegatif as $index => $j) {
+        // dd($j);
         $nama = $j['nama'];
         $negatif = $j['sqrt'];
-        $positif = $perhitunganJarakPositif[$index]['sqrt'];
+        $positif = $hasilJarakPositif[$index]['sqrt'];
 
         $nilaiPrefensi[$nama] = $negatif / ($negatif + $positif);
     }
 
-
-
-    // return $totalC1Akar;
-    // $normalisasiC1 = $n['C1'] / $totalC1Akar;
-    // $normalisasiC2 = $n['C2'] / $totalC2Akar;
-    // $normalisasiC3 = $n['C3'] / $totalC3Akar;
-    // $normalisasiC4 = $n['C4'] / $totalC4Akar;
-    // $normalisasiC5 = $n['C5'] / $totalC5Akar;
-
-    // Return hasil perhitungan dan kuadratC1
     return [
         'hasil_kuadrat' => $hasil,
         'normalisasi' => $normalisasi,
@@ -330,189 +323,21 @@ class PenilaianController extends Controller
         'perhitunganJarakNegatif' => $perhitunganJarakNegatif,
         'hasilJarakNegatif' => $hasilJarakNegatif,
         'nilaiPrefensi' => $nilaiPrefensi,
-
-        // 'kuadratC1' => $kuadratC1,
-        // 'kuadratC2' => $kuadratC2,
-        // 'kuadratC3' => $kuadratC3,
-        // 'kuadratC4' => $kuadratC4,
-        // 'kuadratC5' => $kuadratC5,
-        // 'akarKuadratC1' => $totalC1Akar,
-        // 'akarKuadratC2' => $totalC2Akar,
-        // 'akarKuadratC3' => $totalC3Akar,
-        // 'akarKuadratC4' => $totalC4Akar,
-        // 'akarKuadratC5' => $totalC5Akar,
-        // 'normalisasiC1' => $normalisasiC1,
-        // 'normalisasiC2' => $normalisasiC2,
-        // 'normalisasiC3' => $normalisasiC3,
-        // 'normalisasiC4' => $normalisasiC4,
-        // 'normalisasiC5' => $normalisasiC5,
     ];
 
             // return view('pages.admin.penilaian.topsis', compact('result'));
 
     }
 
+    // Di dalam controller
+    public function tampilkanHasilTopsis()
+    {
+        $result = $this->hitungPreferensi();
+
+        return view('pages.admin.penilaian.topsis', $result);
+    }
+
 
 
 
 }
-
-// $penilaian = Penilaian::with('karyawan')->findOrFail($id);
-//         $kriteria = Criteria::all();
-
-//         $nilai = [
-//             'C1' => $penilaian->C1,
-//             'C2' => $penilaian->C2,
-//             'C3' => $penilaian->C3,
-//             'C4' => $penilaian->C4,
-//             'C5' => $penilaian->C5,
-//         ];
-
-//         // Normalisasi nilai kriteria
-//         $normalizedValues = [];
-//         foreach ($kriteria as $k) {
-//             // $sum = Penilaian::sum($k->kode_kriteria); // Mengakses kolom 'kriteria' yang benar
-//             $normalizedValues[$k->kode_kriteria] = $nilai[$k->kode_kriteria] / sqrt($k->bobot);
-//         }
-
-//         // return $normalizedValues;
-//         // Matriks ternormalisasi dan tertimbang
-//         $weightedValues = [];
-//         foreach ($kriteria as $k) {
-//             $weightedValues[$k->kode_kriteria] = $normalizedValues[$k->kode_kriteria] * $k->bobot;
-//         }
-//         return $weightedValues;
-
-
-//         // Ideal solusi positif dan negatif
-//         $idealPositive = [];
-//         $idealNegative = [];
-//         foreach ($kriteria as $k) {
-//             $idealPositive[$k->kode_kriteria] = Penilaian::max($k->kode_kriteria) / sqrt($sum) * $k->bobot;
-//             $idealNegative[$k->kode_kriteria] = Penilaian::min($k->kode_kriteria) / sqrt($sum) * $k->bobot;
-//         }
-
-//         // return $idealPositive;
-//         // return $idealNegative;
-
-
-//         // Menghitung jarak ke solusi ideal
-//         $distPositive = 0;
-//         $distNegative = 0;
-//         foreach ($kriteria as $k) {
-//             $distPositive += pow($idealPositive[$k->kode_kriteria] - $weightedValues[$k->kode_kriteria], 2);
-//             $distNegative += pow($idealNegative[$k->kode_kriteria] - $weightedValues[$k->kode_kriteria], 2);
-//         }
-//         $distPositive = sqrt($distPositive);
-//         $distNegative = sqrt($distNegative);
-//         // return $distPositive;
-//         // return $distNegative;
-//         // Menghitung nilai preferensi
-//         $nilaiPreferensi = $distNegative / ($distNegative + $distPositive);
-
-//         $result = [
-//             'nama' => $penilaian->karyawan->nama,
-//             'nilai_preferensi' => $nilaiPreferensi,
-//         ];
-
-//         $normalizedMatrix = [];
-//         foreach ($kriterias as $kriteria) {
-//             $sum = 0;
-//             foreach ($penilaian->where('C'. $kriteria->id, $kriteria->kode_kriteria) as $pen) {
-//                 $sum += pow($pen->nilai, 2);
-//             }
-//             $sqrtSum = sqrt($sum);
-//             foreach ($penilaian->where('kriteria_id', $kriteria->id) as $pen) {
-//                 $normalizedMatrix[$pen->karyawan_id][$kriteria->id] = ($pen->nilai / $sqrtSum) * $kriteria->bobot;
-//             }
-//         }
-//         return $penilaian;
-
-//     // Ideal solusi positif dan negatif
-//     $idealPositive = [];
-//     $idealNegative = [];
-//     foreach ($kriterias as $kriteria) {
-//         $values = array_column($normalizedMatrix, $kriteria->id);
-//         $idealPositive[$kriteria->id] = max($values);
-//         $idealNegative[$kriteria->id] = min($values);
-//     }
-
-//     // Menghitung jarak ke solusi ideal
-//     $distances = [];
-//     foreach ($penilaian->groupBy('karyawan_id') as $karyawan_id => $penilaianGroup) {
-//         $distPositive = 0;
-//         $distNegative = 0;
-//         foreach ($kriterias as $kriteria) {
-//             if (isset($normalizedMatrix[$karyawan_id][$kriteria->id])) {
-//                 $distPositive += pow($idealPositive[$kriteria->id] - $normalizedMatrix[$karyawan_id][$kriteria->id], 2);
-//                 $distNegative += pow($idealNegative[$kriteria->id] - $normalizedMatrix[$karyawan_id][$kriteria->id], 2);
-//             }
-//         }
-//         $distances[$karyawan_id]['positive'] = sqrt($distPositive);
-//         $distances[$karyawan_id]['negative'] = sqrt($distNegative);
-//     }
-
-//     // Menghitung nilai preferensi
-//     $results = [];
-//     foreach ($distances as $karyawan_id => $distance) {
-//         $positiveDistance = $distance['positive'];
-//         $negativeDistance = $distance['negative'];
-//         $nilaiPreferensi = $negativeDistance / ($positiveDistance + $negativeDistance);
-
-//         $karyawan = $penilaian->firstWhere('karyawan_id', $karyawan_id)->karyawan;
-//         $results[] = [
-//             'nama' => $karyawan->nama,
-//             'nilai_preferensi' => $nilaiPreferensi,
-//         ];
-//     }
-
-
-// $kriteria = Criteria::all();
-//         $calons = Penilaian::with('karyawan')->get();
-//         // $penilaian = Penilaian::with('karyawan')->findOrFail($id);
-
-
-//         // Matriks keputusan ternormalisasi dan tertimbang
-//         $normalizedMatrix = [];
-//         foreach ($kriteria as $k) {
-//             $sum = 0;
-//             foreach ($calons as $c) {
-//                 $sum += pow($c[$k->kode_kriteria], 2);
-//             }
-//             $sqrtSum = sqrt($sum);
-//             foreach ($calons as $c) {
-//                 $normalizedMatrix[$c->id][$k->kode_kriteria] = ($c[$k->kode_kriteria] / $sqrtSum) * $k->bobot;
-//             }
-//         }
-//         return $sqrtSum;
-//         // Ideal solusi positif dan negatif
-//         $idealPositive = [];
-//         $idealNegative = [];
-//         foreach ($kriteria as $k) {
-//             $idealPositive[$k->kode_kriteria] = max(array_column($normalizedMatrix, $k->kode_kriteria));
-//             $idealNegative[$k->kode_kriteria] = min(array_column($normalizedMatrix, $k->kode_kriteria));
-//         }
-//         return $idealNegative;
-
-//         // Menghitung jarak ke solusi ideal
-//         $distances = [];
-//         foreach ($calons as $c) {
-//             $distPositive = 0;
-//             $distNegative = 0;
-//             foreach ($kriteria as $k) {
-//                 $distPositive += pow($idealPositive[$k->kode_kriteria] - $normalizedMatrix[$c->id][$k->kode_kriteria], 2);
-//                 $distNegative += pow($idealNegative[$k->kode_kriteria] - $normalizedMatrix[$c->id][$k->kode_kriteria], 2);
-//             }
-//             $distances[$c->id]['positive'] = sqrt($distPositive);
-//             $distances[$c->id]['negative'] = sqrt($distNegative);
-//         }
-
-//         // Menghitung nilai preferensi
-//         $results = [];
-//         foreach ($calons as $c) {
-//             $results[] = [
-//                 'nama' => $c->nama,
-//                 'nilai_preferensi' => $distances[$c->id]['negative'] /
-//                                     ($distances[$c->id]['negative'] + $distances[$c->id]['positive']),
-//             ];
-//         }

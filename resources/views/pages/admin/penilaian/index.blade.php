@@ -20,6 +20,8 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Penilaian</h3>
                             <div class="card-tools">
+                                <a href="{{ route('penilaian.topsis') }}" class="btn btn-primary">Hasil Topsis</a>
+
                                 <a href="{{ route('penilaian.create') }}" class="btn btn-success">Tambah Penilaian</a>
                             </div>
                         </div>
@@ -58,7 +60,6 @@
                                             <td>{{ $penilaian->C4 }}</td>
                                             <td>{{ $penilaian->C5 }}</td>
                                             <td>
-                                                <a href="{{ route('penilaian.topsis') }}" class="btn btn-primary">Topsis</a>
                                                 <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-warning">Edit</a>
                                                 <form action="{{ route('penilaian.destroy', $penilaian->id) }}" method="POST" style="display:inline;">
                                                     @csrf

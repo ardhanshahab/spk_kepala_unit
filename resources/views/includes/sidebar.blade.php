@@ -1,12 +1,14 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
-        {{-- <img src="{{ url('backend/dist/img/Logo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3  mt-2"> --}}
-        <span class="brand-text font-weight-bold">Permodalan</span><br>
-        <span class="brand-text font-weight-bold">Nasional</span><br>
-        <span class="brand-text font-weight-bold">Madani</span>
+    <a href="{{ route('home') }}" class="brand-link d-flex flex-column align-items-center">
+        <img src="{{ url('img/Logo.png') }}" alt="AdminLTE Logo" class="brand-image mt-2 mb-2">
+        <div class="text-left">
+            <span class="brand-text font-weight-bold d-block">Permodalan</span>
+            <span class="brand-text font-weight-bold d-block">Nasional</span>
+            <span class="brand-text font-weight-bold d-block">Madani</span>
+        </div>
     </a>
+
 
     <!-- Sidebar -->
     <div class="sidebar">

@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('penilaian', PenilaianController::class);
 
-    Route::get('/admin/penilaian/topsis', [PenilaianController::class, 'hitungPreferensi'])->name('penilaian.topsis');
+    Route::get('/admin/penilaian/topsis', [PenilaianController::class, 'tampilkanHasilTopsis'])->name('penilaian.topsis');
 
 });
 

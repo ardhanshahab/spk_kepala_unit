@@ -38,17 +38,26 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="kriteria_id">Kriteria</label>
-                                    <select name="kriteria_id" class="form-control">
-                                        @foreach($kriteria as $krit)
-                                            <option value="{{ $krit->id }}">{{ $krit->nama }} - {{ $krit->nama_kriteria }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="C1">Kualitas Kerja</label>
+                                    <input type="number" name="C1" class="form-control" value="{{ old('C1') }}" min="0" max="100">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nilai">Nilai</label>
-                                    <input type="number" name="nilai" class="form-control" value="{{ old('nilai') }}" min="0" max="100">
+                                    <label for="C2">Kuantitas Kerja</label>
+                                    <input type="number" name="C2" class="form-control" value="{{ old('C2') }}" min="0" max="100">
                                 </div>
+                                <div class="form-group">
+                                    <label for="C3">Kecepatan dan Efisiensi</label>
+                                    <input type="number" name="C3" class="form-control" value="{{ old('C3') }}" min="0" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="C4">Kepatuhan Terhadap Kebijakan</label>
+                                    <input type="number" name="C4" class="form-control" value="{{ old('C4') }}" min="0" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="C5">Integritas dan Keterampilan Teknis</label>
+                                    <input type="number" name="C5" class="form-control" value="{{ old('C5') }}" min="0" max="100">
+                                </div>
+
                                 <button type="submit" class="btn btn-success">Save</button>
                                 <a href="{{ route('penilaian.index') }}" class="btn btn-default">Back</a>
                             </form>

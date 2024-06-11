@@ -39,8 +39,11 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Karyawan</th>
-                                        <th>Kriteria</th>
-                                        <th>Nilai</th>
+                                        <th>C1</th>
+                                        <th>C2</th>
+                                        <th>C3</th>
+                                        <th>C4</th>
+                                        <th>C5</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,8 +52,11 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $penilaian->karyawan->nama }}</td>
-                                            <td>{{ $penilaian->kriteria->nama }}</td>
-                                            <td>{{ $penilaian->nilai }}</td>
+                                            <td>{{ $penilaian->C1 }}</td>
+                                            <td>{{ $penilaian->C2 }}</td>
+                                            <td>{{ $penilaian->C3 }}</td>
+                                            <td>{{ $penilaian->C4 }}</td>
+                                            <td>{{ $penilaian->C5 }}</td>
                                             <td>
                                                 <a href="{{ route('penilaian.topsis') }}" class="btn btn-primary">Topsis</a>
                                                 <a href="{{ route('penilaian.edit', $penilaian->id) }}" class="btn btn-warning">Edit</a>
@@ -63,7 +69,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5">Data Tidak Ada</td>
+                                            <td colspan="8">Data Tidak Ada</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

@@ -21,7 +21,6 @@
                             <h3 class="card-title">Data Penilaian</h3>
                             <div class="card-tools">
                                 <a href="{{ route('penilaian.topsis') }}" class="btn btn-primary">Hasil Topsis</a>
-
                                 <a href="{{ route('penilaian.create') }}" class="btn btn-success">Tambah Penilaian</a>
                             </div>
                         </div>
